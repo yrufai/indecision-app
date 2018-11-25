@@ -71,7 +71,7 @@ class IndecisionApp extends React.Component {
     }
 
     render() {
-        const title = "YAKUBU AHMED EL-RUFAI"
+        const title = "INDECISION APP"
         const subtitle = "Isha Allah, i'm are making progress";
         return (
             <div>
