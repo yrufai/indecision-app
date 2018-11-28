@@ -1,44 +1,54 @@
 const path = require("path");
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const autoprefixer = require("autoprefixer");
+const devMode = process.env.NODE_ENV !== 'production'
 
-
-module.exports = (env)=>{
-    const isProduction = env === "production"
-    const CSSExtract = new ExtractTextPlugin("styles.css");
+module.exports = () => {
 
     return {
         entry: "./src/app.js",
         output: {
-            path: path.join(__dirname, "public" ),
+            path: path.join(__dirname, "public"),
             filename: "bundle.js"
         },
         module: {
             rules: [
                 {
-                use: "babel-loader",
-                test: /\.js$/,
-                exclude: /node_modules/
+                    test: /\.js$/,
+                    use: "babel-loader",
+                    exclude: /node_modules/
                 },
                 {
                     test: /\.s?css$/,
-                    use: CSSExtract.extract({
-                        use: [
-                            "css-loader",
-                            "sass-loader"
-                        ]
-                    }),
+                    use: [
+                        devMode ? "style-loader" : MiniCssExtractPlugin.loader,
+                        "css-loader",
+                        "postcss-loader",
+                        "sass-loader"
+                    ]
                 }
             ]
         },
         plugins: [
-            CSSExtract
+            new MiniCssExtractPlugin({
+                filename: devMode ? '[name].css' : '[name].[hash].css',
+                chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            }),
+            new webpack.LoaderOptionsPlugin({
+                options:{
+                    postcss: [
+                        autoprefixer()
+                    ]
+                }
+            })
         ],
         devServer: {
             contentBase: path.join(__dirname, 'public'),
             compress: true,
             port: 8080
-          },
-          devtool: isProduction ? "source-map" : "cheap-module-eval-source-map"
-        
+        },
+        devtool: devMode ? "inline-source-map" : "source-map"
+
     }
 }
