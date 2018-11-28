@@ -10,7 +10,7 @@ module.exports = () => {
         entry: "./src/app.js",
         output: {
             path: path.join(__dirname, "public"),
-            filename: "bundle.js"
+            filename: "[name]-bundle.js"
         },
         module: {
             rules: [
@@ -48,7 +48,7 @@ module.exports = () => {
             compress: true,
             port: 8080
         },
-        devtool: devMode ? "inline-source-map" : "source-map"
+        devtool: devMode ? "cheap-module-eval-source-map" : "source-map"
 
     }
 }
