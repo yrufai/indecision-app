@@ -2,9 +2,9 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack");
 const autoprefixer = require("autoprefixer");
-const devMode = process.env.NODE_ENV !== 'production'
 
-module.exports = () => {
+module.exports = (env) => {
+    const devMode = env !== 'production';
 
     return {
         entry: "./src/app.js",
@@ -32,15 +32,7 @@ module.exports = () => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: devMode ? '[name].css' : '[name].[hash].css',
-                chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-            }),
-            new webpack.LoaderOptionsPlugin({
-                options:{
-                    postcss: [
-                        autoprefixer()
-                    ]
-                }
+                filename: devMode ? '[name].css' : '[name].[hash].css'
             })
         ],
         devServer: {
