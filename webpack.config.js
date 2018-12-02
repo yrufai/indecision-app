@@ -41,7 +41,7 @@ module.exports = (env) => {
             port: 8080,
             historyApiFallback: true
         },
-        devtool: devMode ? "cheap-module-eval-source-map" : "source-map"
+        devtool: devMode ? "cheap-eval-source-map" : "source-map"
 
     }
 }
