@@ -13,9 +13,9 @@ const Options = (props) => {
                     Remove All
                 </button>
             </div>
-            {props.addOption.length === 0 && <p className="widget__message">please add an option to get started</p>}
+            {props.options.length === 0 && <p className="widget__message">please add an option to get started</p>}
             {
-                props.addOption.map((option, index) => (
+                props.options.map((option, index) => (
                     <Option
                         key={option}
                         optionText={option}

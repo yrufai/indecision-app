@@ -4,8 +4,7 @@ const webpack = require("webpack");
 const autoprefixer = require("autoprefixer");
 
 module.exports = (env) => {
-    const devMode = env !== 'production';
-
+const devMode = env !== "production"
     return {
         entry: "./src/app.js",
         output: {
@@ -32,7 +31,15 @@ module.exports = (env) => {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: devMode ? '[name].css' : '[name].[hash].css'
+                filename: devMode ? '[name].css' : '[name].[hash].css',
+                chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+            }),
+            new webpack.LoaderOptionsPlugin({
+                options:{
+                    postcss: [
+                        autoprefixer()
+                    ]
+                }
             })
         ],
         devServer: {
@@ -41,7 +48,7 @@ module.exports = (env) => {
             port: 8080,
             historyApiFallback: true
         },
-        devtool: devMode ? "cheap-eval-source-map" : "source-map"
+        devtool: devMode ? "cheap-module-eval-source-map" : "source-map"
 
     }
 }

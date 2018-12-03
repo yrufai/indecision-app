@@ -12,7 +12,7 @@ const OptionModal = (props)=> (
    >
         <h3 className="modal__title" >selected option</h3>
         {props.selectedOption && <p className="modal__body">{props.selectedOption} </p>}
-        <button className="button" onClick={props.handleClearModal}> okay</button>
+        <button className="button" onClick={props.handleClearSelectedOption}> okay</button>
    </Modal>
 )
 
