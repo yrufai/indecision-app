@@ -6,7 +6,7 @@
     "serve": "webpack-dev-server --open  ",
     "dev": "webpack --mode=development --watch",
     "build": "webpack -p --env production ",
-    "start": "node server.js",
+    "start": "node server/server.js",
     "heroku-postbuild": "npm run build",
     "test": "jest",
     "build-babel": "babel src/newApp.js --out-file=public/outfile.js --presets=env,react --watch "
