@@ -20,7 +20,7 @@ const Options = (props) => {
                         key={option}
                         optionText={option}
                         count={index + 1}
-                        handleRemoveOption={props.handleRemoveOption}
+                        handleDeleteOption={props.handleDeleteOption}
                     />
                 ))
             }
