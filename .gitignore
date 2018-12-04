@@ -1,7 +1,4 @@
 node_modules/
-public/main-bundle.js
-public/main-bundle.js.map
-public/main.css
-public/main.css.map
+public/dist/
 src/playground/
 

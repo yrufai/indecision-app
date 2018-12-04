@@ -8,7 +8,7 @@ const devMode = env !== "production"
     return {
         entry: "./src/app.js",
         output: {
-            path: path.join(__dirname, "public"),
+            path: path.join(__dirname, "public", "dist"),
             filename: "[name]-bundle.js"
         },
         module: {
@@ -45,7 +45,8 @@ const devMode = env !== "production"
             contentBase: path.join(__dirname, 'public'),
             compress: true,
             port: 8080,
-            historyApiFallback: true
+            historyApiFallback: true, 
+            publicPath: "/dist/"
         },
         devtool: devMode ? "cheap-module-eval-source-map" : "source-map"
 
